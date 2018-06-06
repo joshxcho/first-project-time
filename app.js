@@ -8,22 +8,14 @@ $(document).ready(function(){
 
     localStorage.setItem(JSON.stringify(snippetNameValue), JSON.stringify(snippetTextValue));
    
-    // $('[name=snippetName]').val('');
-    // $('[name=snippetText]').val('');
-
-
-
   });
   
   $('.getData').on('click', function(){
-    // let retrievedData = localStorage.getItem(snippetNameValue, snippetTextValue);
-    // $('.debug').text(retrievedData);
 
     const snippetArr = [];
     for (var i = 0; i < localStorage.length; i++) { 
   
     snippetArr.push(JSON.parse(localStorage.key(i)) + ' : ' + JSON.parse(localStorage.getItem(localStorage.key(i))))
-      // console.log(snippetArr)
 
     let $body = $('body');
     let $texts = $('<span class="text">' +snippetArr+ '</span>');
@@ -31,7 +23,17 @@ $(document).ready(function(){
     $('.text').remove();
     $('.container').append($texts);
 
-    }
+    };
+ 
+     $('.searchData').on('click', function() {
+
+      let snippetSearchValue = $('.searchBar').val();
+      
+      let $result = localStorage.getItem(snippetSearchValue);
+      // console.log($result)
+      $('.container').html($result);
+        
+    });;
   });
 });
 
